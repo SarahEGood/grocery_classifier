@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Grocery Predictor</title>
+  </head>
+  <body>
+    <h1>Grocery Predictor</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="file"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+    <hr>
+    {% for file in files %}
+      <p>
+	  <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
+	  </p>
+	{% endfor %}
+	{% if pred_class %}
+		<p>{{ pred_class }}</p>
+	{% endif %}
+	{% if outputs %}
+		<p>{{ outputs }}</p>
+	{% endif %}
+  </body>
+</html>
