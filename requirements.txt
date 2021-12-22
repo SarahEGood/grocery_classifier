@@ -1,0 +1,8 @@
+Flask
+# https://files.pythonhosted.org/packages/e0/c7/1c91a71b413c82cd4c49fb8b6676f6135650cd2cca2745a96bd84a56166c/ipython-7.19.0-py3-none-any.whl
+gunicorn
+torch==1.7.1+cpu
+torchvision==0.8.2+cpu
+-f https://download.pytorch.org/whl/torch_stable.html
+fastai
+pathlib
