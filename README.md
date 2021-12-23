@@ -29,4 +29,4 @@ flask run
 
 
 ## License
-See LICENSE.txt
+Code is made free available through MIT License. For details, see LICENSE.txt.
