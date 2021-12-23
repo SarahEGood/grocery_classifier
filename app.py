@@ -13,7 +13,7 @@ app = Flask(__name__, static_url_path='',
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif','.jpeg']
 
-# Set this to '/tmp' when deploying to GCP
+# Set this to '/tmp' when deploying to GCP, './tmp' for local and Github.
 app.config['UPLOAD_PATH'] = './tmp'
 
 try:
