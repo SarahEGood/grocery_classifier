@@ -17,14 +17,14 @@ A tentative public version of this app is available on [Google Cloud Platform](h
 To run offline, clone repo and install requirements.
 
 ```
-git clone https://github.com/SarahEGood/grocery_classifier.git
-pip install -r requirements.txt
+$ git clone https://github.com/SarahEGood/grocery_classifier.git
+$ pip install -r requirements.txt
 ```
 
 From here, the app can be run locally at the root directory with Flask like so:
 
 ```
-flask run
+$ flask run
 ```
 
 

@@ -1,0 +1,9 @@
+/images
+/.ipynb_checkpoints
+test.py
+groceries*
+.gcloudignore
+app.yaml
+/static/uploads/*
+/__pycache__
+*.pyc
