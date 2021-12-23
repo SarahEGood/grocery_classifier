@@ -1,25 +1,41 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Grocery Predictor</title>
+	<title>Grocery Predictor</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-=device=width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
   </head>
   <body>
-    <h1>Grocery Predictor</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
-      <p><input type="file" name="file"></p>
-      <p><input type="submit" value="Submit"></p>
-    </form>
-    <hr>
-    {% for file in files %}
-      <p>
-	  <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
-	  </p>
-	{% endfor %}
-	{% if pred_class %}
-		<p>{{ pred_class }}</p>
-	{% endif %}
-	{% if outputs %}
-		<p>{{ outputs }}</p>
-	{% endif %}
+  <div class="align-self-center" align="center">
+	  <div class="card border-primary mb-3">
+		<div class="card-header"><h1>Grocery Predictor</h1></div>
+		<form class="form-control" method="POST" action="" enctype="multipart/form-data" id="f">
+          <input type="file" id="upload" name="file">
+		</form>
+		<button class="btn btn-primary" type="submit" form="f" value="Submit">Submit</button>
+		</div>
+		<div class="container-fluid">
+		{% for file in files %}
+		  <p>
+		  <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
+		  </p>
+		{% endfor %}
+		{% if pred_class %}
+			<p>{{ pred_class }}</p>
+		{% endif %}
+		{% if outputs %}
+			<p>{{ outputs }}</p>
+		{% endif %}
+		</div>
+  </div>
   </body>
+  <footer id="footer">
+	<div class="align-self-center" align="center">
+		<div class="row">
+		<p>Model and app created by <a href="https://github.com/SarahEGood">Sarah Good</a>. Bootstrap template from <a href="https://bootswatch.com/">Bootswatch</a>.</p>
+		</div>
+	</div>
+  </footer>
 </html>
