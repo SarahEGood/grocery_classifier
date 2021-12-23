@@ -9,7 +9,7 @@
   </head>
   <body>
   <div class="align-self-center" align="center">
-	  <div class="card border-primary mb-3">
+	  <div class="card border-primary mb-3" style="max-width: 20rem;">
 		<div class="card-header"><h1>Grocery Predictor</h1></div>
 		<form class="form-control" method="POST" action="" enctype="multipart/form-data" id="f">
           <input type="file" id="upload" name="file">
@@ -17,17 +17,25 @@
 		<button class="btn btn-primary" type="submit" form="f" value="Submit">Submit</button>
 		</div>
 		<div class="container-fluid">
-		{% for file in files %}
-		  <p>
-		  <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
-		  </p>
-		{% endfor %}
-		{% if pred_class %}
-			<p>{{ pred_class }}</p>
-		{% endif %}
-		{% if outputs %}
-			<p>{{ outputs }}</p>
-		{% endif %}
+		   {% if files %}
+			<div class="card border-secondary mb-3" style="max-width: 20rem;">
+			<div class="card-header"><h3>Results</h2></div>
+			<div class="card-body">
+			{% for file in files %}
+			  <p class="card-text">
+			  <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
+			  </p>
+			{% endfor %}
+			{% if pred_class %}
+				<h4 class="card-title">{{ pred_class }}</h4>
+			{% endif %}
+			{% if outputs %}
+				<p class="card-text">Probabilities:</p>
+				<p class="card-text">{{ outputs }}</p>
+			{% endif %}
+			</div>
+			</div>
+		   {% endif %}
 		</div>
   </div>
   </body>
