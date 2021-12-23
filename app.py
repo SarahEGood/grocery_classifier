@@ -12,7 +12,9 @@ app = Flask(__name__, static_url_path='',
             template_folder='./templates')
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif','.jpeg']
-app.config['UPLOAD_PATH'] = '/tmp'
+
+# Set this to '/tmp' when deploying to GCP
+app.config['UPLOAD_PATH'] = './tmp'
 
 try:
   import googleclouddebugger
@@ -32,15 +34,16 @@ def validate_image(stream):
 
 def deleteImages():
     for f in os.listdir(app.config['UPLOAD_PATH']):
-        file_ext = os.path.splitext(f)[1:]
+        file_ext = os.path.splitext(f)[1]
         if file_ext in app.config['UPLOAD_EXTENSIONS']:
             os.remove(os.path.join(app.config['UPLOAD_PATH'], f))
 
 def predict(img_path):
-    #temp = pathlib.WindowsPath
-    #pathlib.WindowsPath = pathlib.PosixPath
-    
-    learn = load_learner(pathlib.PureWindowsPath(r'./static/model2.pkl').as_posix())
+    current_platform = sys.platform
+    if current_platform == 'linux':
+        learn = load_learner(pathlib.PureWindowsPath(r'./static/model2.pkl').as_posix())
+    else:
+        learn = load_learner(r'./static/model1.pkl')
     
     #pathlib.WindowsPath = temp
     pred_classes, pred_idx, probs = learn.predict(img_path)
