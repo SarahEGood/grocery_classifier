@@ -43,9 +43,11 @@ def predict(img_path):
     if current_platform == 'linux':
         learn = load_learner(pathlib.PureWindowsPath(r'./static/model2.pkl').as_posix())
     else:
-        learn = load_learner(r'./static/model1.pkl')
+        temp = pathlib.PosixPath
+        pathlib.PosixPath = pathlib.WindowsPath
+        learn = load_learner(r'./static/model2.pkl')
+        pathlib.PosixPath = temp
     
-    #pathlib.WindowsPath = temp
     pred_classes, pred_idx, probs = learn.predict(img_path)
     return pred_classes, pred_idx, probs
 
@@ -53,7 +55,7 @@ def predict(img_path):
 def index():
     if os.listdir(app.config['UPLOAD_PATH']):
         deleteImages()
-    files = os.listdir(app.config['UPLOAD_PATH'])
+    files = [x for x in os.listdir(app.config['UPLOAD_PATH']) if x.endswith(tuple(app.config['UPLOAD_EXTENSIONS']))]
     return render_template('index.html', files=files)
 
 @app.route('/', methods=['POST'])
@@ -72,7 +74,7 @@ def upload_files():
         pred_classes, pred_idx, probs = predict(img_path)
         pred_classes = ', '.join([x.capitalize() for x in pred_classes])
         probs = ', '.join([str(round(x, 4)) for x in probs[pred_idx].tolist()])
-        files = os.listdir(app.config['UPLOAD_PATH'])
+        files = [x for x in os.listdir(app.config['UPLOAD_PATH']) if x.endswith(tuple(app.config['UPLOAD_EXTENSIONS']))]
     return render_template('index.html', files=files, pred_class=pred_classes,
         outputs=str(probs))
 
