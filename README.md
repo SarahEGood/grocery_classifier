@@ -11,7 +11,7 @@ The Image dataset can be found [here](https://figshare.com/projects/Grocery_Clas
 
 ### Online Version
 
-A tentative public version of this app is available on [Google Cloud Platform](http://grocery-classifier-335420.uc.r.appspot.com/). This version may have issues with displaying the uploaded image properly, but should still output predictions properly.
+A tentative public version of this app is available on [Google Cloud Platform](http://grocery-classifier-335420.uc.r.appspot.com/).
 
 ### Offline Version
 To run offline, clone repo and install requirements.
@@ -27,6 +27,5 @@ From here, the app can be run locally at the root directory with Flask like so:
 $ flask run
 ```
 
-
 ## License
-Code is made free available through MIT License. For details, see LICENSE.txt.
+Code is made free available through MIT License. For details, see [LICENSE.txt](LICENSE.txt).
